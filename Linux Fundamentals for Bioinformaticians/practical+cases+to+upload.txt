@@ -1,0 +1,91 @@
+##case1
+
+#!/bin/bash 
+echo "What is your name?"
+read PERSON
+echo "Hello, $PERSON"
+
+--------
+
+#!/bin/bash
+
+echo "What is your name?"
+read NAME
+
+echo "What is your age?"
+read AGE
+
+echo "What is your favorite color?"
+read COLOR
+
+echo "Hello, $NAME. You are $AGE years old and your favorite color is $COLOR."
+
+=============================================================
+
+##case2
+
+#!/bin/bash
+echo "Welcome to calculator"
+read a
+read b
+echo $[$a + $b]
+
+-----------
+
+#!/bin/bash
+
+# Print welcome message and prompt user for numbers
+echo "Welcome to calculator"
+read -p "Enter first number: " num1
+read -p "Enter second number: " num2
+
+# Perform arithmetic operations and display result
+echo "Addition: $((num1+num2))"
+echo "Subtraction: $((num1-num2))"
+echo "Multiplication: $((num1*num2))"
+echo "Division: $((num1/num2))"
+
+=====================================================
+
+##case3 (If statement)
+
+#!/bin/bash
+if [ -e example.txt ]
+echo "the file exists"
+else 
+echo "the file doesn't exist"
+fi 
+
+-----------
+##case4.1
+
+#!/bin/bash
+read a
+read b
+[ $a == $b ]
+echo $?
+
+-----------------
+
+##case4.2
+
+#!/bin/bash
+
+# Define the correct password
+PASSWORD="mysecretpassword"
+
+# Prompt user for password
+read -s -p "Enter password: " USER_PASSWORD
+echo
+
+# Compare user input with correct password
+if [ "$USER_PASSWORD" == "$PASSWORD" ]; then
+    echo "Login successful"
+    exit 0
+else
+    echo "Incorrect password"
+    exit 1
+fi
+
+================================================
+

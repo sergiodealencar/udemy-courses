@@ -1,0 +1,54 @@
+Here is a cheat sheet for `grep`, `sed`, `sort`, and `uniq` commands:
+
+## grep
+- `grep` is used to search for specific patterns or lines in a file.
+- Syntax: `grep pattern file`
+- Common options:
+  - `-i`: Ignore case distinctions
+  - `-v`: Invert the match, i.e., output lines not matching the pattern
+  - ^: Match the beginning of a line
+  - \|: Match either of two patterns
+
+## sed
+- `sed` is a powerful stream editor used to perform basic text transformations on a file.
+- Syntax: `sed 's/pattern/replacement/g' file`
+- Common commands:
+  - `s`: Substitute the first occurrence of a pattern with a replacement
+  - `g`: Substitute all occurrences of a pattern with a replacement (global)
+  - `d`: Delete the current pattern space
+
+## sort
+- `sort` is used to sort lines of text in a file.
+- Syntax: `sort file`
+- Common options:
+  - `-r`: Reverse the sort order
+  - `-n`: Sort numerically
+  - `-u`: To sort the lines in a file and remove duplicates
+
+## uniq
+- `uniq` is used to remove duplicate lines from a file.
+- Syntax: `uniq file`
+- Common options:
+  - `-c`: Prefix lines with the number of occurrences
+  - `-d`: Only output lines that are repeated
+  - `-u`: Only output lines that are unique
+
+
+## head
+- head is used to display the first few lines of a file.
+- Syntax: head file
+- Common options:
+-n: Display the first n lines of the file
+
+- Example:
+
+- head -n 3 file.txt
+ the -n option is used to specify the number of lines to display, so here will read the first three lines of the file and display them to the terminal.
+
+## less
+- less is a pager program used to view the contents of a file.
+- Syntax: less file
+- Common commands:
+- q: Quit the program
+
+I hope this cheat sheet is helpful for you, my students! Let me know if you have any further questions.

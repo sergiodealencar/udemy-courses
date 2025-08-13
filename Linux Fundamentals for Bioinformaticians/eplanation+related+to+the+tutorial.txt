@@ -1,0 +1,30 @@
+12:45
+
+Explaining why didn't I use 'g' flag in the sed command in the tutorial
+
+
+The `g` flag in a `sed` substitution command stands for "global" and tells `sed` to substitute all occurrences of the pattern on each line, rather than just the first occurrence. 
+
+In our example, the command `sed 's/>//' m.FASTA.txt` replaces the first occurrence of the ">" character on each line of the file with an empty string (i.e., it removes the ">" character).
+
+If your file only has one ">" character per line, then using the `g` flag in this command would not make a difference, since there is only one occurrence of the pattern to begin with. However, if there are multiple ">" characters on a line and you want to remove all of them, then adding the `g` flag would be necessary to perform a global substitution.
+
+For example, if your file had a line like this:
+
+```
+>header1>header2>header3 sequence data
+```
+
+and you wanted to remove all of the ">" characters in the header section, you would need to use the `g` flag to replace all occurrences:
+
+```
+sed 's/>//g' file.txt
+```
+
+This command would output:
+
+```
+header1header2header3 sequence data
+```
+
+I hope this explanation helps! Let me know if you have any further questions.

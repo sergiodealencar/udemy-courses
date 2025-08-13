@@ -1,0 +1,428 @@
+touch filename
+#this is to create a file
+-----------------------------------
+
+mkdir directoryname
+#this is to create a folder/directory
+-----------------------------------
+
+CONTROL + L
+#clears the screen
+-----------------------------------
+
+cat filename
+#to display the content of a file
+-----------------------------------
+
+cat file1.txt file2.txt > newfile.txt
+#to concatenate the contents of files
+-----------------------------------
+
+cat -n filename
+#displays line numbers of the file
+-----------------------------------
+
+cat --help
+#displays all possible command (man cat in older mac releases)
+-----------------------------------
+
+pwd
+#displays current working directory
+-----------------------------------
+
+cd /home/sergio
+#to change directory
+-----------------------------------
+
+Absolute Path vs Relative Path
+"/" represents the root directory
+-----------------------------------
+
+cd ..
+#to go back one directory
+-----------------------------------
+
+mkdir Documents/commands
+#to create a directory inside the Documents directory
+-----------------------------------
+
+cd ~
+#tilda is the home directory
+-----------------------------------
+
+
+cd -
+#dash takes you to the previous directory that your were in
+-----------------------------------
+
+ls -l (or ls -lh)
+#displays files and directories in the long format
+-----------------------------------
+
+ls -la
+#includes hidden files
+-----------------------------------
+
+ls -lt
+#sort directories and files by modification time
+-----------------------------------
+
+ls ..
+#list files in the parent directory
+-----------------------------------
+
+ls *.txt 
+#wild card to filter all files that end with .txt
+-----------------------------------
+
+ls s*
+#files that start with s
+-----------------------------------
+
+ls -lSh
+#sort the output by file size
+-----------------------------------
+
+ls -lX
+#sort the content by the extension
+-----------------------------------
+
+FILE PERMISSIONS:
+
+Owner | Group | World
+- Read Permission (r)
+- Write Permission (w)
+- Execute Permission (x)
+
+Example
+u: user
+g: group
+o: other people
+
+-rw-rw-r--
+change permission to let owner execute this file:
+chmod u+x filename
+
+change permission to let other people execute this file:
+chmod o+w filename
+
+remove permission to let other people execute this file:
+chmod o-w filename
+
+
+give all the execution permission
+chmod a+x filename
+-----------------------------------
+
+Changing permission with a numeric mode
+
+chmod 754 commands
+
+# 7 for the owner category, 5 for the group, and 4 for other people
+
+4 represents "read"
+2 represents "write"
+1 represents "execute"
+0 represents "no permissions"
+-----------------------------------
+
+
+
+rm filename.txt
+#to remove a file
+-----------------------------------
+
+
+rm filename1.txt filename2.txt filename3.txt
+#to remove a file
+-----------------------------------
+
+rm -r 
+#to remove a directory (r for recursive)
+-----------------------------------
+
+rm -rf
+#force to remove without prompting confirmation
+-----------------------------------
+
+rm -i data.xls
+#requests confirmation before deleting
+-----------------------------------
+
+mv source destination
+#moves file to the specified destination
+-----------------------------------
+
+mv destination/file.txt .
+#move file.txt to the current directory
+-----------------------------------
+
+mv oldname.txt newname.txt
+#changes the name of the file
+-----------------------------------
+
+cp file.txt destination/
+#copy file to destination
+-----------------------------------
+
+cp -r linux/ /home/sergio/Documents
+#copy directory to another location
+-----------------------------------
+
+
+
+### Task 1: Creating Files and Directories
+
+1. mkdir ~/linux_practice
+2. cd ~/linux_practice
+3. touch file1.txt
+4. cat file1.txt
+5. touch file2.txt
+
+### Task 2: Managing Files and Directories
+
+1. ls -l 
+2. mv file2.txt newfile.txt
+3. cp newfile.txt newfile_copy.txt
+4. rm newfile.txt
+5. mkdir subdir
+6. chmod u+rwx subdir
+
+### Task 3: Navigating Directories
+
+1. pwd
+2. cd ..
+3. cd linux_practice
+
+### Task 3: Navigating Directories
+
+1. rm newfile_copy.txt
+2. rm file1.txt
+3. rm -r subdir
+-----------------------------------
+
+
+GREP (man grep)
+
+grep "apple" article.txt
+#to find all apple occurrences in the file
+-----------------------------------
+
+grep -v "apple" article.txt
+#to find all lines that do not contain the word "apple"
+-----------------------------------
+
+grep -v -i "apple" article.txt
+#to find all lines that do not contain the word "apple", including capitalized
+-----------------------------------
+
+grep "^A" filename
+#finds all lines that start with capital A
+-----------------------------------
+
+grep "apple\|orange" filename
+#finds all lines that contain apple or orange
+-----------------------------------
+
+wc -l filename
+#counts the lines
+-----------------------------------
+
+cut -d " " -f1 > cut.txt
+#extrats the first occurrences of a field delimited by one spaces
+-----------------------------------
+
+grep ">" realistic_sequences.fasta | sed 's/>//g' | sort > realistic_sequences_new.fasta
+#an example of piping
+-----------------------------------
+
+grep "^@M02166" FASTQ_example.fastq| sed 's/^@//' | cut -d ' ' -f1 | sort | uniq -c
+#extract headers from FASTQ file
+-----------------------------------
+
+Linux shells:
+. Bash
+. Zsh
+etc.
+
+chmod 722 myscript.sh
+#tornar myscript.sh executável
+-----------------------------------
+
+zsh myscript.sh
+bash myscript.sh
+#tambem executa myscript.sh (mesmo sem torná-lo executável)
+-----------------------------------
+
+#!/bin/bash
+#shebang line
+-----------------------------------
+
+head filename
+#shows first lines of file
+-----------------------------------
+
+head -5 filename1 filename2 filename3
+#shows first 5 lines of these three files
+-----------------------------------
+
+tail filename
+#shows last lines of file
+#can also use -n to specify number of files shown
+-----------------------------------
+
+Loop example:
+
+#!/bin/bash
+for filename in basilisk.dat spirillum.dat unicorn.dat
+do
+	echo $filename
+	head -n 3 $filename | tail -n 1
+done
+
+
+
+#!/bin/bash
+for filename in JavaScript-practice/*
+do
+	echo $filename
+	head -n 3 $filename
+done
+
+#this one loops overs all files in the JavaScript-practice folder
+
+
+VIM commands
+i: to insert
+Esc button: when you finish typing
+:wq: this saves the file
+
+
+Example 1:
+#!/bin/bash
+echo "What's your name?"
+read PERSON
+echo "Hello, $PERSON!"
+
+
+Example 2:
+#!/bin/bash
+echo "What's your name?"
+read NAME
+
+echo "What is your age?"
+read AGE
+
+echo "What is you color?"
+read COLOR
+
+echo "Hello, $NAME. You are $AGE years old and your favorite color is $COLOR."
+
+
+Example 3:
+#!/bin/bash
+
+# Print welcome message and prompt user for numbers
+echo "Welcome to calculator"
+read -p "Enter first number: " num1
+read -p "Enter second number: " num2
+
+# Perform arithmetic operations and display result
+echo "Addition: $((num1 + num2))"
+echo "Subtraction: $((num1 - num2))"
+echo "Multiplication: $((num1 * num2))"
+echo "Division: $((num1 / num2))"
+
+
+
+Para testar se um executável foi adicionado ao PATH temporariamente (no Zsh):
+export PATH="/usr/local/Cellar/spades/4.2.0/bin:$PATH"
+
+Adicione permanentemente ao PATH:
+echo 'export PATH="/usr/local/Cellar/spades/4.2.0/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc  # Carrega as alterações
+
+NANO (tem mais recursos que vim)
+nano myscript.sh
+
+
+Example 4 (com IF):
+if [ -e myscript.sh ]
+then
+echo "the file exists"
+else
+echo "the file doesn't exist"
+
+fi
+
+Example 5:
+
+#!/bin/bash
+
+#Define the correct password
+PASSWORD="mysecretpassword"
+
+#Prompt user for password
+read -s -p "Enter password: " USER_PASSWORD
+echo
+
+#Compare user input with correct password
+if [ "$USER_PASSWORD" == "$PASSWORD" ]; then
+	echo "Login successful"
+	exit 0
+else
+	echo "Incorrect password"
+	exit 1
+fi
+
+Example 6:
+
+#!/bin/bash
+
+# Prompt the user for a sequence
+read -p "Enter a DNA sequence: " sequence
+
+# Check if the sequence contains only valid DNA characters
+if [[ $sequence =~ ^[ACTGactg]+$ ]]
+then 
+	echo "Sequence is valid!"
+else
+	echo "Error: Invalid sequence. Sequence should only contain A, C, T, or G."
+fi
+
+
+Example 7:
+
+#!/bin/bash
+for i in 1 2 3 4 5
+do
+echo $1
+done
+
+
+Example 8:
+
+#!/bin/bash
+
+for i in *.fasta
+do
+	grep ">" "$i" | sort -u > "$i.headers.txt"
+done
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,97 @@
+***for loops*** 
+
+##The syntax:
+
+#!/bin/bash
+for variable in list
+do
+  # Code to be executed
+done
+
+--------------
+
+##Example 1: 
+
+#!/bin/bash
+
+for i in *.fasta
+do
+    grep ">" "$i" | sort -u > "$i.headers.txt"
+done
+
+----------------
+
+##Example 2: 
+
+#!/bin/bash
+protein_sequence="MAEGEITTFTALTEKFNLPPGNYKKPKLLYCSNGGHFLRILPDSDQHIQLQLLAMDTDGLLYGSQTPNEECLFLERLEENHYNTYTSKKHAEKNWFVGLKKNGSCKRGPRTHYGQKAILFLPLPV"
+count=0
+
+for amino_acid in $(echo $protein_sequence | grep -o .)
+do
+    if [ "$amino_acid" == "L" ]
+    then
+        count=$((count + 1))
+    fi
+done
+
+echo "Number of leucine residues: $count"
+
+========================================================
+
+***while Loop***
+
+##The Syntax 
+
+#!/bin/bash
+while condition
+do
+  # Code to be executed
+done
+
+---------------------
+
+##Example:1 
+
+#!/bin/bash
+
+counter=1
+
+while [ $counter -le 5 ]
+do
+    echo "Hello, world!"
+    counter=$((counter + 1))
+done
+
+------------------------
+
+##Example: 2
+
+#!/bin/bash
+
+input_file="sequences.txt"
+
+while read -r sequence
+do
+    echo "Sequence: $sequence"  # print the current sequence to the console
+done < "$input_file"
+
+--------------------------
+
+##Example: 3
+
+
+#!/bin/bash
+
+input_file="sequences.fasta"
+output_file="reverse_complements.fasta"
+
+while read -r header
+do
+    read -r sequence  # read the sequence line after the header
+    reverse=$(echo "$sequence" | rev)  # get the reverse complement of the sequence
+    complement=$(echo "$reverse" | tr "ACGT" "TGCA")  # get the complement of the reverse sequence
+    echo "$header" >> "$output_file"  # write the original header line to the output file
+    echo "$complement" >> "$output_file"  # write the reverse complement sequence to the output file
+done < "$input_file"
+
